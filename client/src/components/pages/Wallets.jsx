@@ -8,7 +8,6 @@ export default function WalletsPage({ wallets, btcRate, ethRate }) {
   return (
     <PageLayout tabs={tabs}>
       <Wallets wallets={wallets} rate={ethRate} />
-
       <Wallets wallets={wallets} rate={btcRate} />
     </PageLayout>
   );
