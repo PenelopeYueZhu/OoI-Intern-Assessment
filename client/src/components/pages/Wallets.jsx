@@ -7,8 +7,14 @@ export default function WalletsPage({ wallets, btcRate, ethRate }) {
 
   return (
     <PageLayout tabs={tabs}>
-      <Wallets wallets={wallets} rate={ethRate} />
-      <Wallets wallets={wallets} rate={btcRate} />
+      <Wallets
+        wallets={wallets.filter(wallet =>
+          wallet.currency.includes("Ethereum"))}
+        rate={ethRate} />
+        <Wallets
+          wallets={wallets.filter(wallet =>
+            wallet.currency.includes("Bitcoin"))}
+          rate={btcRate} />
     </PageLayout>
   );
 }
