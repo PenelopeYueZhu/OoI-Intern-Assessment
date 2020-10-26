@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import BigNumber from "bignumber.js"
 
 import {CardTitle, CardAddress, CardBalance}
   from "../../atoms/Text/index.jsx";
 import TextIcon from "../../atoms/Button/TextIcon";
 import WalletCard from "../../atoms/Card/index.jsx";
+import TouchWalletForm from "../Form/TouchWallet.jsx";
 
 import { deleteWallet } from "../../../actions";
 
 export default function ({wallet, rate}) {
+  const [displayEditForm, toggleEditForm] = useState(false);
+
   // Calculating the currency
   var balance = BigNumber(wallet.balance);
   var formattedBalanceOg = new Intl.NumberFormat(
@@ -31,7 +34,25 @@ export default function ({wallet, rate}) {
       <p></p>
       <CardBalance children={"USD Balance: " + formattedBalanceUSD} />
       <p></p>
-      <TextIcon children="Edit" />
+      <TextIcon
+        children="Edit"
+        onClick={()=>{
+            console.log("edit");
+            toggleEditForm(true);
+          }
+        }
+      />
+      {displayEditForm
+        && <TouchWalletForm isEdit={true} wallet={wallet}/> }
+      {displayEditForm
+        && <TextIcon
+             children="Cancel"
+             onClick={()=> {
+               toggleEditForm(false);
+             }}
+           />
+      }
+
       <TextIcon
         children="Delete"
         onClick={()=> {

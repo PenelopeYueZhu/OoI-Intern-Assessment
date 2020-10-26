@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import PriceInfo from "../molecules/Info/PriceInfo";
 import WalletCard from "../molecules/WalletCard/WalletCard.jsx";
-import AddWalletForm from "../molecules/Form/AddWallet.jsx";
+import TouchWalletForm from "../molecules/Form/TouchWallet.jsx";
 
 import TextIcon from "../atoms/Button/TextIcon";
 
@@ -41,7 +41,8 @@ class Wallets extends React.Component {
                 this.setState({displayAddForm: true});
               }}
             />
-            {this.state.displayAddForm && <AddWalletForm />}
+            {this.state.displayAddForm
+             && <TouchWalletForm isEdit={false} wallet={null}/>}
             {this.state.displayAddForm &&
               <TextIcon
                 children="Cancel"

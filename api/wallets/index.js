@@ -32,6 +32,25 @@ router.post("/", async (req, res) => {
 
 });
 
+router.put("/", async (req, res) => {
+  const app = req.app.get("app");
+  try {
+    var newWallet = {
+      name: req.body.name,
+      address: req.body.address,
+      currency: req.body.currency,
+      balance: parseInt(req.body.balance)
+    }
+    wallets = await app.updateWallet(newWallet);
+  } catch (e) {
+    logger.error(e);
+    return res.status(500).send();
+  }
+  res.json(wallets);
+
+});
+
+
 router.delete("/", async (req, res) => {
   const app = req.app.get("app");
   try {

@@ -1,14 +1,14 @@
 import React from "react";
-import { addWallet } from "../../../actions";
+import { addWallet, editWallet } from "../../../actions";
 
-class AddWalletForm extends React.Component {
+class TouchWalletForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      address: "",
-      currency: "Ethereum",
-      balance: 0
+      name: props.wallet ? props.wallet.name : "",
+      address: props.wallet ? props.wallet.address : "",
+      currency: props.wallet ? props.wallet.currency : "Ethereum",
+      balance: props.wallet ? props.wallet.balance : 0
     };
 
     this.handleBalanceChange = this.handleBalanceChange.bind(this);
@@ -36,8 +36,21 @@ class AddWalletForm extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log(addWallet(this.state));
-    alert("New wallet " + this.state.name + " added!");
+    var newWallet = {
+      name: this.state.name,
+      address: this.state.address,
+      currency: this.state.currency,
+      balance: this.state.balance
+    }
+    if( this.props.isEdit ){
+      console.log(newWallet.currency);
+      editWallet(newWallet);
+      alert( this.props.wallet.name + " udpated!");
+    }
+    else {
+      console.log(addWallet(newWallet));
+      alert("New wallet " + this.state.name + " added!");
+    }
   }
 
   render() {
@@ -48,7 +61,8 @@ class AddWalletForm extends React.Component {
           <input
             type="text"
             value={this.state.name}
-            onChange={this.handleNameChange} />
+            onChange={this.handleNameChange}
+            disabled={this.props.isEdit}/>
         </label>
         <label>
           Address:
@@ -79,4 +93,4 @@ class AddWalletForm extends React.Component {
   }
 }
 
-export default AddWalletForm;
+export default TouchWalletForm;

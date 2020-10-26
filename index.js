@@ -68,8 +68,29 @@ class App {
     });
   }
 
+  updateWallet(data) {
+    var name = data.name;
+    var walletIndex = -1;
+    for(walletIndex = 0; walletIndex < walletData.length; walletIndex ++ ){
+      if(walletData[walletIndex].name == name ){
+        this.logger.info("Found wallet: " + name);
+        this.logger.info("The currency is " + data.currency);
+        walletData[walletIndex] = data;
+        fs.writeFile("./config/wallets.json", JSON.stringify(walletData),
+          function(err){
+            if(err) throw err;
+          }
+        );
+        break;
+      }
+    }
+
+    return new Promise((resolve) => {
+      resolve(this.walletData);
+    });
+  }
+
   deleteWallet(data){
-    this.logger.info("We are deleteing...or trying.")
     var name = data.name;
     var walletIndex = -1;
     for(walletIndex = 0; walletIndex < walletData.length; walletIndex ++ ){
