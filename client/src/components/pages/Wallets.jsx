@@ -11,10 +11,10 @@ export default function WalletsPage({ wallets, btcRate, ethRate }) {
         wallets={wallets.filter(wallet =>
           wallet.currency.includes("Ethereum"))}
         rate={ethRate} />
-        <Wallets
-          wallets={wallets.filter(wallet =>
-            wallet.currency.includes("Bitcoin"))}
-          rate={btcRate} />
+      <Wallets
+        wallets={wallets.filter(wallet =>
+          wallet.currency.includes("Bitcoin"))}
+        rate={btcRate} />
     </PageLayout>
   );
 }
