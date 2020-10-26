@@ -18,7 +18,13 @@ describe("App", async (accounts) => {
 
   describe("addWallet", () => {
     it("creates a new wallet", async () => {
-      const wallets = await app.getWallets();
+      var newWallet = {
+        name: "third wallet",
+        address: " ",
+        currency: "Bitcoin",
+        balance: 1000
+      };
+      const wallets = await app.addWallets(newWallet);
       expect(wallets.length).to.be.equal(3);
     });
   });

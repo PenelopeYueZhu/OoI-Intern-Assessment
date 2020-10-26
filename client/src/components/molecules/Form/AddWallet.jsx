@@ -1,4 +1,5 @@
 import React from "react";
+import { addWallet } from "../../../actions";
 
 class AddWalletForm extends React.Component {
   constructor(props) {
@@ -6,7 +7,7 @@ class AddWalletForm extends React.Component {
     this.state = {
       name: "",
       address: "",
-      currency: "",
+      currency: "Ethereum",
       balance: 0
     };
 
@@ -19,28 +20,24 @@ class AddWalletForm extends React.Component {
   }
 
   handleBalanceChange(event) {
-    this.setState({balance: event.target.value});
-    console.log( event.target.value);
+    this.setState({balance: parseInt(event.target.value)});
   }
 
   handleNameChange(event) {
     this.setState({name: event.target.value});
-    console.log( event.target.value);
   }
 
   handleAddressChange(event) {
     this.setState({address: event.target.value});
-    console.log( event.target.value);
   }
 
   handleCurrencyChange(event) {
     this.setState({currency: event.target.value});
-    console.log( event.target.value);
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.name);
-    event.preventDefault();
+    console.log(addWallet(this.state));
+    alert("New wallet " + this.state.name + " added!");
   }
 
   render() {

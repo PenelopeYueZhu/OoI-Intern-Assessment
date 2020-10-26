@@ -5,6 +5,8 @@ const { walletAPI } = require("./api");
 const defaultConfig = require("./config");
 const walletData = require("./config/wallets");
 
+const fs = require("fs");
+
 class App {
   constructor(config) {
     this.config = { ...defaultConfig, ...config };
@@ -50,6 +52,33 @@ class App {
     return new Promise((resolve) => {
       resolve(this.walletData);
     });
+  }
+
+  addWallet(data) {
+    this.walletData.push(data);
+
+    fs.writeFile("./config/wallets.json", JSON.stringify(walletData),
+      function(err){
+        if(err) throw err;
+      }
+    );
+  }
+
+  deleteWallet(data){
+    var name = data.name;
+    var walletIndex = -1;
+    for(walletIndex = 0; walletIndex < walletData.length; walletIndex ++ ){
+      if(walletData[walletIndex].name == name ){
+        walletData.splice(walletIndex, 1);
+        break;
+      }
+    }
+
+    fs.writeFile("./config/wallets.json", JSON.stringify(walletData),
+      function(err){
+        if(err) throw err;
+      }
+    );
   }
 }
 
