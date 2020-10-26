@@ -1,1 +1,1 @@
-[{"name":"Wallet 1","address":"0x0000000000000000000000000000000000000000","currency":"Ethereum","balance":1e+21},{"name":"Wallet 2","address":"0x0000000000000000000000000000000000000001","currency":"Bitcoin","balance":100000000000000000000},{"name":"wallet 3","address":"dsf","currency":"Ethereum","balance":33}]
+[{"name":"Wallet 1","address":"0x0000000000000000000000000000000000000000","currency":"Ethereum","balance":1e+21},{"name":"Wallet 2","address":"0x0000000000000000000000000000000000000001","currency":"Bitcoin","balance":100000000000000000000}]

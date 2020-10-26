@@ -3,7 +3,10 @@ import BigNumber from "bignumber.js"
 
 import {CardTitle, CardAddress, CardBalance}
   from "../../atoms/Text/index.jsx";
+import TextIcon from "../../atoms/Button/TextIcon";
 import WalletCard from "../../atoms/Card/index.jsx";
+
+import { deleteWallet } from "../../../actions";
 
 export default function ({wallet, rate}) {
   // Calculating the currency
@@ -27,6 +30,17 @@ export default function ({wallet, rate}) {
         cryptoSymbol + formattedBalanceOg} />
       <p></p>
       <CardBalance children={"USD Balance: " + formattedBalanceUSD} />
+      <p></p>
+      <TextIcon children="Edit" />
+      <TextIcon
+        children="Delete"
+        onClick={()=> {
+          deleteWallet(wallet).then(() => {
+            console.log("deleted");
+            window.location.reload();
+          });
+        }}
+      />
     </div>
   );
 

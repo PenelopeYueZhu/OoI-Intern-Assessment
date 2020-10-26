@@ -62,23 +62,31 @@ class App {
         if(err) throw err;
       }
     );
+
+    return new Promise((resolve) => {
+      resolve(this.walletData);
+    });
   }
 
   deleteWallet(data){
+    this.logger.info("We are deleteing...or trying.")
     var name = data.name;
     var walletIndex = -1;
     for(walletIndex = 0; walletIndex < walletData.length; walletIndex ++ ){
       if(walletData[walletIndex].name == name ){
         walletData.splice(walletIndex, 1);
+        fs.writeFile("./config/wallets.json", JSON.stringify(walletData),
+          function(err){
+            if(err) throw err;
+          }
+        );
         break;
       }
     }
 
-    fs.writeFile("./config/wallets.json", JSON.stringify(walletData),
-      function(err){
-        if(err) throw err;
-      }
-    );
+    return new Promise((resolve) => {
+      resolve(this.walletData);
+    });
   }
 }
 

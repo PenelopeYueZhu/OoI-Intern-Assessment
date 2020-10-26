@@ -9,6 +9,7 @@ export default async (wallet) => {
       },
       body: JSON.stringify(wallet)
     });
+    wallets = await res.json();
   } catch (e) {
     return console.log(e);
   }

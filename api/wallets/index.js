@@ -28,6 +28,8 @@ router.post("/", async (req, res) => {
     logger.error(e);
     return res.status(500).send();
   }
+  res.json(wallets);
+
 });
 
 router.delete("/", async (req, res) => {
@@ -44,6 +46,8 @@ router.delete("/", async (req, res) => {
     logger.error(e);
     return res.status(500).send();
   }
+  res.json(wallets);
+
 });
 
 module.exports = router;
